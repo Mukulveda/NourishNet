@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #143D2F; padding: 10px 20px;">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/home">
+            <img src="/image/NourishNet Logo.png" alt="NourishNet Logo" class="navbar-logo me-2">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">Home</a>
+                </li>
+
+                <% if (!currUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">Login</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/donate" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">ShareFood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/donations" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">Meals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/donations/my" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">MyShares</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" style="color: #FFFFFF; font-weight: bold; font-size: 1.1rem;">Log Out</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar-logo {
+        width: 200px;
+        height: 50px;
+    }
+</style>

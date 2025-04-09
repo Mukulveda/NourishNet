@@ -1,0 +1,96 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <br>
+        <h2>Share Your Food</h2>
+        <form method="POST" action="/donations" class="needs-validation" novalidate>
+            <!-- Food Name -->
+            <div class="mb-3">
+                <label for="food_name" class="form-label">Food Name</label>
+                <input name="food_name" id="food_name" placeholder="Enter food name" type="text" class="form-control" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please enter a food name.</div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" id="description" placeholder="Enter description" class="form-control" required></textarea>
+                <div class="invalid-feedback">Please enter a short description.</div>
+            </div>
+
+            <!-- Image URL -->
+            <div class="mb-3">
+                <label for="image_url" class="form-label">Upload Image URL</label>
+                <input name="image_url" id="image_url" type="text" class="form-control" required>
+                <div class="invalid-feedback">Please provide an image URL.</div>
+            </div>
+
+            <!-- Quantity and Address -->
+            <div class="row">
+                <!-- Quantity -->
+                <div class="col-md-4 mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input name="quantity" id="quantity" placeholder="e.g. 2 pieces, 0.5 kg" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a valid quantity.</div>
+                </div>
+
+                <!-- Address -->
+                <div class="col-md-8 mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input name="address" id="address" placeholder="Enter address" type="text" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a valid address.</div>
+                </div>
+            </div>
+
+            <!-- Expiry Date -->
+            <div class="mb-3">
+                <label for="expiry_date" class="form-label">Expiry Date</label>
+                <input name="expiry_date" id="expiry_date" type="date" class="form-control" required>
+                <div class="invalid-feedback">Please select a valid expiry date.</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-dark add-btn mt-3">ADD</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap Client-Side Validation Script -->
+<script>
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
+
+<style>
+    label {
+        font-weight: 500;
+    }
+
+    input, textarea {
+        min-height: 45px;
+    }
+
+    .add-btn {
+        width: 100%;
+        font-weight: bold;
+        background-color: #134e3c !important;
+    }
+
+    .add-btn:hover {
+        background-color: #103c2f !important;
+    }
+</style>
