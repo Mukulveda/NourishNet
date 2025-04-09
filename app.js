@@ -85,6 +85,24 @@ app.get("/home", (req, res) => res.render("home"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
 
+// ✅ POST /signup route to handle user registration
+app.post("/signup", async (req, res, next) => {
+  try {
+    const { username, email, password } = req.body;
+    const user = new User({ username, email });
+    const registeredUser = await User.register(user, password);
+    req.login(registeredUser, err => {
+      if (err) return next(err);
+      req.flash("success", "Welcome to NourishNet!");
+      res.redirect("/donations");
+    });
+  } catch (e) {
+    req.flash("error", e.message);
+    res.redirect("/signup");
+  }
+});
+
+// Login route
 app.post(
   "/login",
   passport.authenticate("local", {
@@ -97,6 +115,7 @@ app.post(
   }
 );
 
+// Logout
 app.get("/logout", (req, res, next) => {
   req.logout(err => {
     if (err) return next(err);
