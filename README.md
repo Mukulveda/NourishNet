@@ -78,6 +78,6 @@ Architecture & Features:
 MVC Pattern – Clean separation between models, views, and controllers
 CRUD Operations – Users can Create, Read, Update, and Delete donations
 Secure Auth Flow – Signup, login, logout protected with session and flash messages
-ShareFood & MyShares Pages – Users can browse donations or view their own
+ShareFood & MyShares Pages – Users can browse donations or view their own.
 
 
