@@ -41,9 +41,9 @@
           <p class="card-text"><%= dono.description %></p>
           <p><strong>Quantity:</strong> <%= dono.quantity %></p>
           <p><strong>Address:</strong> <%= dono.address %></p>
-          <p><strong>Owner:</strong> <%= dono.donor_id.username %></p>
+          <p><strong>Owner:</strong> <%= dono.donor_id ? dono.donor_id.username : 'Unknown' %></p>
 
-          <% if (currUser && currUser._id.toString() === dono.donor_id._id.toString()) { %>
+          <% if (currUser && dono.donor_id && currUser._id.toString() === dono.donor_id._id.toString()) { %>
             <form action="/donations/<%= dono._id %>/edit" method="GET" class="mt-auto">
               <button class="btn btn-sm btn-outline-warning w-100">Edit Donation</button>
             </form>
@@ -51,13 +51,13 @@
 
           <p class="mt-2"><strong>Status:</strong> <%= dono.status %></p>
 
-          <% if (dono.status === "available" && currUser && currUser._id.toString() !== dono.donor_id._id.toString()) { %>
+          <% if (dono.status === "available" && currUser && dono.donor_id && currUser._id.toString() !== dono.donor_id._id.toString()) { %>
             <form action="/donations/<%= dono._id %>/accept" method="POST">
               <button class="btn btn-success btn-sm w-100">Accept</button>
             </form>
           <% } %>
 
-          <% if (dono.status === "accepted" && currUser && currUser._id.toString() === dono.donor_id._id.toString()) { %>
+          <% if (dono.status === "accepted" && currUser && dono.donor_id && currUser._id.toString() === dono.donor_id._id.toString()) { %>
             <form action="/donations/<%= dono._id %>/collected" method="POST">
               <button class="btn btn-danger btn-sm w-100 mt-2">Mark as Collected</button>
             </form>

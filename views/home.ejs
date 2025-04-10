@@ -2,20 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8">   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NourishNet - Sharing Meals, Spreading Happiness</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
   <style>
-    /* body{
-        background-color: white !important;
-    } */
     .hero-section {
       background-color: #d2fff2;
       padding: 60px 20px;
-      width: 100%;
-      margin: 0;
-      overflow: hidden;
     }
 
     .hero-img {
@@ -25,7 +22,6 @@
     @media (max-width: 991.98px) {
       .hero-img {
         width: 100%;
-        max-width: 100%;
       }
     }
 
@@ -39,14 +35,32 @@
       }
     }
 
-    .how-it-works {
-      padding: 50px 20px;
+    .how-it-works, .testimonials, .cta-section {
+      padding: 60px 20px;
       text-align: center;
     }
 
     .icon {
       font-size: 40px;
       color: #ff7f50;
+    }
+
+    .testimonial-card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      height: 200px;
+      width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #e7e0c9, #dff9fb);
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -57,15 +71,15 @@
     <div class="row align-items-center flex-column-reverse flex-md-row text-center text-md-start px-3 px-md-5">
 
       <!-- Text Block -->
-      <div class="col-md-6 mt-4 mt-md-0 shift-right">
+      <div class="col-md-6 mt-4 mt-md-0 shift-right" data-aos="fade-right">
         <h1 class="fw-bold">Sharing Meals, Spreading Happiness</h1>
         <p class="lead">Join us in connecting communities through shared food. NourishNet makes it easy to offer surplus meals and bring joy to those in need.</p>
         <a href="<%= currUser ? '/donations' : '/signup' %>" class="btn btn-warning btn-lg mt-3">Get Started</a>
       </div>
 
       <!-- Image -->
-      <div class="col-md-6 shift-right">
-        <img src="/image/Home img.png" alt="Food Sharing" class="img-fluid hero-img">
+      <div class="col-md-6 shift-right" data-aos="fade-left">
+        <img src="/image/Home_img.png" alt="Food Sharing" class="img-fluid hero-img">
       </div>
     </div>
   </div>
@@ -74,25 +88,68 @@
   <div class="container how-it-works">
     <h2 class="mb-5">How It Works</h2>
     <div class="row g-4">
-      <div class="col-12 col-md-4">
-        <div class="icon">📝</div>
+      <div class="col-12 col-md-4" data-aos="zoom-in">
+        <div class="icon"><i class="bi bi-person-plus"></i></div>
         <h4 class="mt-2">Sign Up</h4>
         <p>Create an account to get started.</p>
       </div>
-      <div class="col-12 col-md-4">
-        <div class="icon">🍽️</div>
+      <div class="col-12 col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon"><i class="bi bi-egg-fried"></i></div>
         <h4 class="mt-2">Offer Meals</h4>
         <p>List your extra food to share with others.</p>
       </div>
-      <div class="col-12 col-md-4">
-        <div class="icon">❤️</div>
+      <div class="col-12 col-md-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon"><i class="bi bi-heart-fill"></i></div>
         <h4 class="mt-2">Share the Joy</h4>
         <p>Help reduce hunger and foster connections.</p>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
+  <!-- Testimonials -->
+  <div class="container testimonials">
+    <h2 class="mb-5">What Our Users Say</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="testimonial-card">
+          <p>"NourishNet helped me connect with people who truly needed the extra food I had. It’s a beautiful initiative!"</p>
+          <strong>- Asha, Volunteer</strong>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimonial-card">
+          <p>"As a student, this platform helped me reduce waste and help someone in need. Highly recommend it!"</p>
+          <strong>- Ramesh, Student</strong>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="testimonial-card">
+          <p>"Simple to use and a great cause. The experience of giving was priceless."</p>
+          <strong>- Priya, Homemaker</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="container-fluid cta-section mt-5 mb-2" data-aos="zoom-in">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h2>Start Making a Difference Today</h2>
+        <p class="lead">Whether you have a little or a lot, your surplus can change lives. Join NourishNet and become a food hero.</p>
+        <a href="<%= currUser ? '/donations' : '/signup' %>" class="btn btn-success btn-lg mt-3">Join Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 1000,
+    });
+  </script>
 </body>
 </html>
