@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 const DonationSchema = new Schema({
   donor_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
   food_name: { type: String, required: true },
-  description:{ type: String, required: true },
+  description: {
+    type: String,
+    required: true,
+    maxlength: 200 // Limit description to around 30–40 words
+  },
   quantity: { type: String, required: true },
   expiry_date: { type: Date, required: true },
   address: { type: String, required: true },

@@ -1,36 +1,124 @@
 <% layout("/layouts/boilerplate") %>
 
-<h2 class="mb-4 text-center">Edit Donation</h2>
+<!-- Background Wrapper -->
+<div style="background-color: #f2f0e5 !important; min-height: 100vh; display: flex; justify-content: center; align-items: center;">
 
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <form action="/donations/<%= donation._id %>?_method=PUT" method="POST">
+  <!-- Card Content -->
+  <div class="card shadow-lg p-4 mt-3 mb-3" style="width: 100%; max-width: 800px; border-radius: 20px; background-color: rgba(255, 255, 255, 0.9); position: relative; overflow: hidden;">
+    <div class="card-blur-bg"></div> <!-- Optional blurred layer -->
+
+    <h2 class="text-center mb-4" style="color: #3D405B; position: relative; z-index: 2;">Update Your Shared Meal</h2>
+
+    <form action="/donations/<%= donation._id %>?_method=PUT" method="POST" class="needs-validation" novalidate style="position: relative; z-index: 2;">
+      <!-- Food Name -->
       <div class="mb-3">
         <label for="food_name" class="form-label">Food Name</label>
-        <input type="text" class="form-control" id="food_name" name="food_name" value="<%= donation.food_name %>" required>
+        <input name="food_name" id="food_name" type="text" class="form-control" value="<%= donation.food_name %>" placeholder="Enter food name" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter a food name.</div>
       </div>
 
+      <!-- Description -->
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" id="description" name="description" rows="3" required><%= donation.description %></textarea>
+        <textarea name="description" id="description" class="form-control" placeholder="Enter description" required><%= donation.description %></textarea>
+        <div class="invalid-feedback">Please enter a short description.</div>
       </div>
 
-      <div class="mb-3">
-        <label for="quantity" class="form-label">Quantity</label>
-        <input type="text" class="form-control" id="quantity" name="quantity" value="<%= donation.quantity %>" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" class="form-control" id="address" name="address" value="<%= donation.address %>" required>
-      </div>
-
+      <!-- Image URL -->
       <div class="mb-3">
         <label for="image_url" class="form-label">Image URL</label>
-        <input type="text" class="form-control" id="image_url" name="image_url" value="<%= donation.image_url %>">
+        <input name="image_url" id="image_url" type="text" class="form-control" value="<%= donation.image_url %>" required>
+        <div class="invalid-feedback">Please provide an image URL.</div>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100 mb-3">Update Donation</button>
+      <!-- Quantity -->
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input name="quantity" id="quantity" class="form-control" placeholder="e.g. 2 pieces, 0.5 kg" value="<%= donation.quantity %>" required>
+        <div class="invalid-feedback">Please enter a valid quantity.</div>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input name="address" id="address" type="text" class="form-control" placeholder="Enter address" value="<%= donation.address %>" required>
+        <div class="invalid-feedback">Please enter a valid address.</div>
+      </div>
+
+      <!-- Expiry Date -->
+      <div class="mb-3">
+        <label for="expiry_date" class="form-label">Expiry Date</label>
+        <input name="expiry_date" id="expiry_date" type="date" class="form-control" value="<%= donation.expiry_date.toISOString().split('T')[0] %>" required>
+        <div class="invalid-feedback">Please select a valid expiry date.</div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-dark w-100 mt-2 update-btn">Update Donation</button>
     </form>
   </div>
 </div>
+
+<!-- Bootstrap Client-Side Validation Script -->
+<script>
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
+
+<style>
+  label {
+    font-weight: 500;
+  }
+
+  .form-label {
+    color: #3D405B;
+  }
+
+  .form-control {
+    color: #3D405B !important;
+  }
+
+  input, textarea {
+    min-height: 45px;
+    border-radius: 10px;
+  }
+
+  .update-btn {
+    font-weight: bold;
+    background-color: #3D405B !important;
+    color: #F4F1DE !important;
+    border-radius: 10px;
+  }
+
+  .update-btn:hover {
+    background-color: #2e2f44 !important;
+    transform: translateY(-1px);
+  }
+
+  .card {
+    border: none;
+  }
+
+  .card-blur-bg {
+    background-image: url('/image/New-Edit.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    opacity: 0.2;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: 1;
+  }
+</style>
+<!-- Optional blurred layer -->
