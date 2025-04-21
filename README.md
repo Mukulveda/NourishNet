@@ -4,7 +4,7 @@
 
 ---
 
-## 📌 What is NourishNet?
+## 📌 What is NourishNet? 
 
 The goal of NourishNet is to **reduce food waste** and **bridge the gap between donors and recipients** by creating a platform where people can share leftover or extra meals.
 
